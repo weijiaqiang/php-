@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<definitions name="hi" targetNamespace="urn:hi" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:hi" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<types xmlns="http://schemas.xmlsoap.org/wsdl/" />
+	<portType name="hiPort">
+		<operation name="greet">
+			<input message="tns:greetRequest" />
+			<output message="tns:greetResponse" />
+		</operation>
+		<operation name="serverTimestamp">
+			<input message="tns:serverTimestampRequest" />
+			<output message="tns:serverTimestampResponse" />
+		</operation>
+		<operation name="myfunc">
+			<input message="tns:myfuncRequest" />
+			<output message="tns:myfuncResponse" />
+		</operation>
+	</portType>
+	<binding name="hiBinding" type="tns:hiPort">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="greet">
+			<soap:operation soapAction="urn:hi#Mywsdl#greet" />
+			<input><soap:body use="encoded" namespace="urn:hi" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:hi" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="serverTimestamp">
+			<soap:operation soapAction="urn:hi#Mywsdl#serverTimestamp" />
+			<input><soap:body use="encoded" namespace="urn:hi" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:hi" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="myfunc">
+			<soap:operation soapAction="urn:hi#Mywsdl#myfunc" />
+			<input><soap:body use="encoded" namespace="urn:hi" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:hi" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+	</binding>
+	<service name="hi">
+		<documentation />
+		<port name="hiPort" binding="tns:hiBinding"><soap:address location="http://127.0.0.1:80/createsoap/s.php" />
+		</port>
+	</service>
+	<message name="greetRequest">
+		<part name="name" type="xsd:string" />
+	</message>
+	<message name="greetResponse">
+		<part name="greet" type="xsd:string" />
+	</message>
+	<message name="serverTimestampRequest">
+	</message>
+	<message name="serverTimestampResponse">
+		<part name="serverTimestamp" type="xsd:string" />
+	</message>
+	<message name="myfuncRequest">
+		<part name="a" type="xsd:string" />
+	</message>
+	<message name="myfuncResponse">
+		<part name="myfunc" type="xsd:string" />
+	</message>
+</definitions>
